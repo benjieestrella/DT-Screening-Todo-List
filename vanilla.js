@@ -9,9 +9,12 @@ function addTask() {
 
             const li = document.createElement("li");
                 li.textContent = taskText;
-                li.addEventListener("click", () => {
-                li.classList.toggle("completed");
-                    setTimeout(() => li.remove(), 2000); 
+                li.addEventListener("click", () => {                   
+                li.classList.add("completed");
+                    setTimeout(() => {
+                        li.style.opacity = "0"; 
+                        setTimeout(() => li.remove(), 500); 
+                    }, 2000);
                 });
 
             const deleteBtn = document.createElement("button");
