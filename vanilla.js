@@ -1,31 +1,35 @@
-        document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
             const taskInput = document.getElementById("taskInput");
             const addTaskBtn = document.getElementById("addTaskBtn");
             const taskList = document.getElementById("taskList");
 
-            function addTask() {
-                const taskText = taskInput.value.trim();
+function addTask() {
+            const taskText = taskInput.value.trim();
                 if (taskText === "") return;
 
-                const li = document.createElement("li");
+            const li = document.createElement("li");
                 li.textContent = taskText;
                 li.addEventListener("click", () => {
-                    li.classList.toggle("completed");
+                li.classList.toggle("completed");
+                    setTimeout(() => li.remove(), 2000); 
                 });
 
-                const deleteBtn = document.createElement("button");
+            const deleteBtn = document.createElement("button");
                 deleteBtn.textContent = "X";
                 deleteBtn.classList.add("delete");
-                deleteBtn.addEventListener("click", () => {
+                deleteBtn.addEventListener("click", (event) => {
+                    console.log("triggered!!")
+                    event.stopPropagation();
                     li.remove();
                 });
+
                 li.appendChild(deleteBtn);
                 taskList.appendChild(li);
                 taskInput.value = "";
-            }
+ }
 
-            addTaskBtn.addEventListener("click", addTask);
+     addTaskBtn.addEventListener("click", addTask);
             taskInput.addEventListener("keypress", (event) => {
                 if (event.key === "Enter") addTask();
             });
-        });
+});
