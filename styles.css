@@ -75,9 +75,16 @@
         transition: 0.3s;
         border: 1px solid #ddd;
     }
+    ul li:hover::after {
+            content: " (Click me when completed)";
+            color: gray;
+            font-size: 12px;
+            margin-left: 10px;
+        }
 
-    li.completed {
-        text-decoration: line-through;
+    ul li.completed {
+        background-color: lightgray;
+        text-decoration: line-through;        
         color: #888;
     }
 
